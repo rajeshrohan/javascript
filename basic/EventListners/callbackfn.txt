@@ -1,0 +1,26 @@
+java script is single threaded, synchronous fn 
+
+event loop : 
+
+call back fn: fn are first class citizen in java script , 
+	means a fn can be passed to another fn, call call back fn.
+
+callback fn gives the power of synchronisation to javascript.
+
+
+# blocking the main thread:
+    javascript has only one call stack or main thread.
+    everything executed through call stack only.
+
+    if any heavy operation taking multiple seconds to run will block the call stack, this is called blocking the main thread.
+    that's why we shouldn't block the main thread.
+
+    so,  use async await for those heavy operations.
+
+# event listner:
+    Q.Why do large codebase removes eventListners?
+    ans: its heavy, it takes memory , forms closure, so we are not able to free up space, 
+    so , we need to remove eventListners when we are not using it, so it can be garbage collected.
+    if multiple buttons, so because of so much closure , page slow
+
+
