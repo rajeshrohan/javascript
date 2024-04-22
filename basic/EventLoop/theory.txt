@@ -1,0 +1,79 @@
+when ever any javascript program is run, a global execution context is formed.
+then it is pushed inside the call stack
+for ever function call, again a new execution context is created and inside that code will be executed line by line.
+after function ends, that execution context pops out of call stack.
+
+
+call stack don't have timer , so how to do wait and run a code later.
+
+browser has local storage.
+browser has timer.
+browser has URL.
+fetch data from server.
+display on browser
+bluetooth, location access
+
+to access this things and communate with browser, we use web API
+the features of browser : 
+WEB API : 
+set Timeout()  = timer, this fn takes a callback fn as parameter
+DOM API        = DOM tree
+fetch()        = fetch server 
+localStorage   
+console
+location
+
+just do window.setTimeOut(), window.console();
+
+these all are global, so we can do just setTimeOut also.
+-----------------------------------------------------------------
+setTimeOut : 
+
+Event loop and Callback Queue : 
+when timer of setTimeOut expires, it can't direclty do to the call stack.
+so , it moves inside call back Queue, 
+so event loop acts like gatekeeper , it checks for a callback fn if present,
+then event loop pushed that callback into call stack by creating the execution context.
+
+------------------------------------------------------------
+DOM : 
+
+let's see, in case of EvenListners : 
+document.getelementById("");
+  this document. means its calling DOM API, and fetching from DOM Tree
+
+  DOM : document object Model, its like html source code
+  then it tries to find out. 
+
+  addEventListner: it registers the callback method and attaches the event to it, that is click event , etc.
+
+after the code execution, event handlers still stays , untill be explicity remove them or we close the browser.
+
+why do we need callback Queue , if we can directly push into call stack.??
+suppose a user clicks a button clicks continuously, they get into callback queue, then evenloop checks , and take them into call stack to executed one by one. 
+
+-------------------------------------------------------------------
+fetch : it goes and request a api call, it returns a promise, and we have to pass a callback fn, when promise resolve, we execute that callback fn.
+
+we have a microTask queue also, other then callback queue also.
+this microTask Queue is having higher priority than callback queue.
+fetch goes into microTask.
+
+at first , when call stack is emtpy then also event loop , pushes from callback queue or microTask queue.
+
+what things come under microTask queue : 
+all the callback functions that comes through promises will go inside microtask queue.
+mutation observer  also .
+
+synonym : callback queue / task queue
+
+
+call stack -> microTask queue -> callback queue 
+
+if microTask keeps creating , more microtask, then it may happen callback queue tasks will have to wait for a longer time. 
+this is called starvation of the task inside callback queue.
+
+
+
+
+
