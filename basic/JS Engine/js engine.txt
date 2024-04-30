@@ -1,0 +1,53 @@
+Javascript Runtime Environment comprises :
+    JS Engine
+    API
+    Event Loop
+    Callback queue
+    Micro queue
+
+Every browser has a Javascript Runtime Environment
+Node js is a Javascript Runtime Environment
+
+----------------------------------------------------------------------------------
+ Api = localStorage, settimeout, console.log 
+ each browser may have different Js Engine.
+    chrome, nodejs uses : V8 Engine
+    Mozilla uses : spidermonkey
+    Microsoft edge : chakra
+
+ECMAScript : standard rules for Javascript.
+
+js Engine : 
+    it is a program. it takes high level code and converts to machine readable code.
+    it take human readable code as input, 
+        1. Parsing : broken down into tokens,
+        2. Compilation : 
+        3. Execution : 
+
+    1.Parsing : broke down code into tokens.
+     ex : let    a =    10;
+          token token token
+     syntax parser : take the code and code into AST (Abstract Syntax Tree)
+
+    2. Compilation : this AST is passed to compilation stage.
+        JIT compilation : just in time 
+
+        Interpreter : takes a code and starts executing line by line                (faster)
+        Compiler : first checked for syntax errors, then optimised, then Execution  (Efficient)
+
+        js was supposed to be Interpreted language by its founder.
+        now, js use both Interpreter and Compiler.
+        i.e. JIT comiler , used both 
+
+        AST goes to Interpreter, converts high level code to bytecode, and moves for Execution
+        
+        AOT : ahead of Time, another thing.
+--------------------------------------------------------------------------------------------        
+        Memory heap and callStack
+        inside js Engine callStack is present.
+
+        Garbage collection : it uses mark and sweep algorithm
+
+
+
+

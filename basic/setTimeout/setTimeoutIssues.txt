@@ -1,0 +1,10 @@
+if millions of line of code after registering the settimeout
+so, global exection context will not move out till many seconds.
+but settimeout timer is already expired. 
+this is known as concurrency model in js.
+
+ block the main thread 
+
+Even if timer of settimeout is 0 , then also, it will register timer, 
+and again comes to call stack, so it takes time also.
+sometimes, we need to deffer the code and give priority to next code, we can use it. 
