@@ -1,32 +1,37 @@
-// DRY principle : don't repeat yourself 
-const radius = [3, 1, 2, 4];
+const users = [
+    {firstName: "Rajesh", lastName: "Rohan", age: 30},
+    {firstName: "rani", lastName: "laxmi", age: 40},
+    {firstName: "papaki", lastName: "pari", age: 40},
+    {firstName: "konbanega", lastName: "crorePati", age:50}
+]
 
-const area = function (radius){ //the logic  or callback fn
-    return Math.PI*radius*radius;
-}
-const circumferece = function (radius){
-    return 2*Math.PI*radius;  
-}
-const diamter = function diamter(radius){
-    return 2*radius;
-}
-// when we put anything on prototye it appers in all type/ array 
-// array will become this.
-Array.prototype.calculate = function (logic){ 
-    const output = [];
-    for(let i=0; i<this.length; i++){
-        output.push(logic(this[i]));
+// get list off full names 
+const val1 = users.map(x => x.firstName+" "+ x.lastName);
+console.log(val1);
+
+// get different ages , and no of perons with that age 
+// {30: 1, 40: 2, 50: 1}
+// acc here will act like a hashmap 
+const val2 = users.reduce(function(acc, curr){
+    if(acc[curr.age]){      
+        acc[curr.age]++;
     }
-    return output;
-}
+    else{
+        acc[curr.age] = 1;
+    }
+    return acc;
+}, {});     //
+console.log(val2);
 
-// console.log(radius.map(area))
-// console.log(radius.map(circumferece));
-// console.log(radius.map(diamter));
+// find objects with age less than 
+const val3 = users.filter((x)=> x.age< 50);
+console.log(val3);
 
-console.log(radius.calculate(area));
-console.log(radius.calculate(circumferece));
-console.log(radius.calculate(diamter));
 
-// if you do Array.prototype.calculate in defination 
-// then , cosole.log(radius.calculate(radius, area));
+// find first name 
+const val4 = users.filter((x) => x.age < 50)
+            .map((x) => x.firstName);
+console.log(val4);
+
+// other way also, using only reduce .
+

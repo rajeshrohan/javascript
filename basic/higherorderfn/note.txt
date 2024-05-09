@@ -5,8 +5,6 @@ Higher Order fn : a fn with takes another fn as argument , or returns a fn
 each function has one task , single responsibility principle
 reusability 
 modularity
-
-
 -----------------------------------------------------------------
 
 function x(){
@@ -20,8 +18,8 @@ function y(){
 
 y();    // higher order fn 
 
----------------------------------------------------------------
-
+-------------------------------------------------------------------
+Approach 1 : three separate fn
 const radius = [3, 1, 2, 4];
 
 const calcualteArea = function (radius){    // area
@@ -56,6 +54,7 @@ console.log(calcualteDiameter(radius));
 Note : we are repeating multiple types 
 
 ----------------------------------------------------------------
+Approach 2 : one generic fn and 3 logic fn 
 
 const radius = [3, 1, 2, 4];
 
@@ -85,6 +84,8 @@ Note : radius.map(area)
 map radius with logic area 
  
 ----------------------------------------------------------------
+Approach 3 : using map fn  
+
 // poly fill implementation , map type
 
 const radius = [3, 1, 2, 4];
@@ -116,5 +117,5 @@ console.log(radius.calculate(area));
 console.log(radius.calculate(circumferece));
 console.log(radius.calculate(diamter));
 
----------------------------------------------------------------
+----------------------------------------------------------------------
 

@@ -1,0 +1,147 @@
+Diff btwn map, filter, reduce
+
+use : used to transform the array
+
+-------------------------------
+tips : 
+    x.toString(2);  // x is decimal, param 2 gives binary, 8 gives octal
+
+-------
+map : 
+-------
+map takes a logic or fn as a param: for each element logic will run 
+
+const arr = [5, 1, 3, 2, 6];
+
+const output = arr.map(double); // transform array , using logic double the val
+function double(x){
+    return 2*x;
+}
+console.log(output);
+
+
+const val = arr.map(function triple(x){
+    return 3*x;
+})
+console.log(val);
+
+
+function binary(x){
+    return x.toString(2);
+}
+console.log(arr.map(binary));
+
+
+const val2 = arr.map((x)=> x.toString(8));
+console.log(val2);
+
+----------
+filter : 
+----------
+
+const arr = [5, 1, 3, 4, 2, 6];
+
+function isOdd(x){
+    return x%2      //return x%2 ==1;
+}
+const output = arr.filter(isOdd);
+console.log(output);
+
+
+function isEven(x){
+    return x%2 == 0;
+}
+console.log(arr.filter(isEven));
+
+
+console.log(arr.filter((x)=> x>4)); 
+
+--------------------------------
+reduce : 
+-------------------------------
+take an array and return one val only.
+
+const arr = [5, 1, 3, 2, 6];
+
+// ----------------------------------------------------
+// get sum : 
+function findSum (arr){
+    let sum = 0;
+    for(let i=0; i<arr.length; i++)
+        sum += arr[i];
+    return sum;
+}
+console.log(findSum(arr));
+
+
+// reduce takes two param, 
+// 1st as function(accumulator and current)
+// 2nd as initial val of curr
+const output = arr.reduce(function(acc, curr){
+    acc += curr;
+    return acc;
+}, 0);
+console.log(output);
+
+//------------------------------------------------------
+function findMax(arr){
+    let max = 0;
+    for(let i=0; i<arr.length; i++)
+        if(max < arr[i])
+            max = arr[i];
+    return max;
+}
+console.log(findMax(arr));
+
+// this function inside reduce runs for each arr element (curr);
+// then accumulate , when we return acc
+
+const val = arr.reduce(function(acc, curr){
+    if(curr > acc)
+        acc = curr;
+    return acc;
+}, 0);
+console.log(val);
+
+//---------------------------------------------------------------------------
+const users = [
+    {firstName: "Rajesh", lastName: "Rohan", age: 30},
+    {firstName: "rani", lastName: "laxmi", age: 40},
+    {firstName: "papaki", lastName: "pari", age: 40},
+    {firstName: "konbanega", lastName: "crorePati", age:50}
+]
+
+// get list off full names 
+const val1 = users.map(x => x.firstName+" "+ x.lastName);
+console.log(val1);
+
+// get different ages , and no of perons with that age 
+// {30: 1, 40: 2, 50: 1}
+// acc here will act like a hashmap 
+const val2 = users.reduce(function(acc, curr){
+    if(acc[curr.age]){      
+        acc[curr.age]++;
+    }
+    else{
+        acc[curr.age] = 1;
+    }
+    return acc;
+}, {});     //
+console.log(val2);
+
+// find objects with age less than 
+const val3 = users.filter((x)=> x.age< 50);
+console.log(val3);
+
+
+// find first name 
+const val4 = users.filter((x) => x.age < 50)
+            .map((x) => x.firstName);
+console.log(val4);
+
+// other way also, using only reduce .
+-------------------------------------------------------------------------
+
+
+
+
