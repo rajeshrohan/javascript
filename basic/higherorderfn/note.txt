@@ -1,0 +1,120 @@
+Higher Order fn : a fn with takes another fn as argument , or returns a fn 
+
+// DRY principle : don't repeat yourself 
+
+each function has one task , single responsibility principle
+reusability 
+modularity
+
+
+-----------------------------------------------------------------
+
+function x(){
+    console.log("hello");
+}
+
+function y(){
+    console.log("rajesh");
+    x();    // callback fn
+}
+
+y();    // higher order fn 
+
+---------------------------------------------------------------
+
+const radius = [3, 1, 2, 4];
+
+const calcualteArea = function (radius){    // area
+    const output = [];
+    for(let i=0; i<radius.length; i++){
+        output.push(Math.PI*radius[i]*radius[i]);
+    }
+    return output;
+};
+console.log(calcualteArea(radius));
+
+const calcualteCircumference = function(radius){    // circumferece
+    const output = [];
+    for(let i=0; i<radius.length; i++){
+        output.push(Math.PI*2*radius[i]);
+    }
+    return output;
+};
+console.log(calcualteCircumference(radius));
+
+
+const calcualteDiameter = function(radius){    // diamter
+    const output = [];
+    for(let i=0; i<radius.length; i++){
+        output.push(2*radius[i]);
+    }
+    return output;
+};
+
+console.log(calcualteDiameter(radius));
+
+Note : we are repeating multiple types 
+
+----------------------------------------------------------------
+
+const radius = [3, 1, 2, 4];
+
+const area = function (radius){ //the logic  or callback fn
+    return Math.PI*radius*radius;
+}
+const circumferece = function (radius){
+    return 2*Math.PI*radius;  
+}
+const diamter = function diamter(radius){
+    return 2*radius;
+}
+
+const calculate = function (arr, logic){//generic or higher order fn 
+    const output = [];
+    for(let i=0; i<arr.length; i++){
+        output.push(logic(arr[i]));
+    }
+    return output;
+}
+
+console.log(radius.map(area))
+console.log(radius.map(circumferece));
+console.log(radius.map(diamter));
+
+Note : radius.map(area)
+map radius with logic area 
+ 
+----------------------------------------------------------------
+// poly fill implementation , map type
+
+const radius = [3, 1, 2, 4];
+
+const area = function (radius){ //the logic  or callback fn
+    return Math.PI*radius*radius;
+}
+const circumferece = function (radius){
+    return 2*Math.PI*radius;  
+}
+const diamter = function diamter(radius){
+    return 2*radius;
+}
+// when we put anything on prototye it appers in all type/ array 
+// array will become this.
+Array.prototype.calculate = function (logic){ 
+    const output = [];
+    for(let i=0; i<this.length; i++){
+        output.push(logic(this[i]));
+    }
+    return output;
+}
+
+// console.log(radius.map(area))
+// console.log(radius.map(circumferece));
+// console.log(radius.map(diamter));
+
+console.log(radius.calculate(area));
+console.log(radius.calculate(circumferece));
+console.log(radius.calculate(diamter));
+
+---------------------------------------------------------------
+
